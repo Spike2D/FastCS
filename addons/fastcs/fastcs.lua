@@ -88,16 +88,6 @@ settings.register('settings', 'settings_update', function (s)
         fastcs.settings = s;
     end
 
-    -- Update the frame_rate_divisor object..
-    if (fastcs.frame_rate_divisor ~= nil) then
-        fastcs.frame_rate_divisor:apply(fastcs.settings.frame_rate_divisor);
-    end
-	
-    -- Update the exclusions object..
-    if (fastcs.exclusions ~= nil) then
-        fastcs.exclusions:apply(fastcs.settings.exclusions);
-    end
-	
     -- Save the current settings..
     settings.save();
 end);

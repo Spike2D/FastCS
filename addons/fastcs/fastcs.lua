@@ -187,9 +187,20 @@ ashita.events.register('command', 'command_cb', function (e)
 			fastcs.settings.frame_rate_divisor = 2
 		elseif (args[3] == 'uncapped' or args[3] == '0') then
 			fastcs.settings.frame_rate_divisor = 0 
+		else
+			print(chat.header(addon.name):append(chat.message(args[3] .. ' is not a valid option.')))
+			return;
 		end
 		
-		local help_message = (fastcs.settings.frame_rate_divisor == 0) and 'Uncapped' or (fastcs.settings.frame_rate_divisor == 1 ) and '60 FPS' or (fastcs.settings.frame_rate_divisor == 2) or '30 FPS'
+		local help_message = 'fps'
+		if (fastcs.settings.frame_rate_divisor == 0) then
+			help_message = 'Uncapped'
+		elseif (fastcs.settings.frame_rate_divisor == 1) then
+			help_message = '60 FPS'
+		elseif (fastcs.settings.frame_rate_divisor == 2) then
+			help_message = '30 FPS'
+		end
+		
 		print(chat.header(addon.name):append(chat.message('Default frame rate divisor is now: ' .. fastcs.settings.frame_rate_divisor .. '(' .. help_message .. ')')));
 		settings.save();
         return;
